@@ -2,30 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>IELTS Band 9 Mastery: 50-Case Drill</title>
+    <title>Ultimate IELTS Band 9 Drill (50 Cases)</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; padding: 20px; display: flex; justify-content: center; }
-        .card { background: white; width: 100%; max-width: 800px; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .dropdown { width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #3498db; border-radius: 6px; }
-        button { background: #2c3e50; color: white; border: none; padding: 15px; width: 48%; border-radius: 6px; cursor: pointer; font-weight: bold; }
-        #output { margin-top: 20px; padding: 20px; background: #e8f6f3; border-radius: 6px; display: none; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; display: flex; justify-content: center; padding: 20px; }
+        .card { background: white; width: 100%; max-width: 850px; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .dropdown { width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #3498db; border-radius: 6px; font-size: 16px; }
+        button { background: #2c3e50; color: white; border: none; padding: 15px; width: 48%; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        #output { margin-top: 20px; padding: 20px; background: #e8f6f3; border-radius: 6px; display: none; font-size: 1.1em; }
         .tts-btn { background: #8e44ad; width: 100%; margin-top: 10px; }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <h2 id="title">Band 9 Mastery (1/50)</h2>
+    <h2 id="title">Band 9 Academic Master Drill (1/50)</h2>
     <p id="prompt"><strong>Prompt:</strong> Loading...</p>
     
     <label><b>Cause Nominalization</b></label>
-    <select id="cause" class="dropdown"><option value="">-- Select --</option></select>
+    <select id="cause" class="dropdown"><option value="">-- Select Cause --</option></select>
     
     <label><b>Academic Verbs</b></label>
-    <select id="verb" class="dropdown"><option value="">-- Select --</option></select>
+    <select id="verb" class="dropdown"><option value="">-- Select Verb --</option></select>
     
     <label><b>Effect Nominalization</b></label>
-    <select id="effect" class="dropdown"><option value="">-- Select --</option></select>
+    <select id="effect" class="dropdown"><option value="">-- Select Effect --</option></select>
     
     <button onclick="evaluateDrill()">Submit & Evaluate</button>
     <button style="background:#27ae60" onclick="nextCase()">Next Case &raquo;</button>
@@ -41,35 +41,80 @@
         { q: "Fast food makes people obese.", causes: ["Eating junk food", "Processed food intake", "The habitual consumption of energy-dense processed sustenance"], verbs: ["gives", "leads to", "precipitates"], effects: ["people get fat", "weight gain", "the accelerated prevalence of metabolic disorders"] },
         { q: "Social media makes people lonely.", causes: ["Using social media", "Online social interaction", "The pervasive utilization of digital networking platforms"], verbs: ["brings", "creates", "engenders"], effects: ["feelings of loneliness", "social isolation", "a profound exacerbation of social alienation"] },
         { q: "Robots will take human jobs.", causes: ["Using robots", "Automation", "The widespread deployment of autonomous robotic systems"], verbs: ["destroys", "replaces", "necessitates the restructuring of"], effects: ["people lose jobs", "job loss", "the large-scale displacement of the traditional workforce"] },
-        // ... Adding 45 more logic-mapped cases ...
+        { q: "Air pollution is bad for health.", causes: ["Dirty air", "Industrial emissions", "The unabated discharge of industrial pollutants"], verbs: ["causes", "impacts", "correlates with"], effects: ["more diseases", "health issues", "a surge in respiratory and cardiovascular pathologies"] },
+        { q: "Tourism damages local culture.", causes: ["Many tourists", "Tourism growth", "The exponential expansion of global tourism"], verbs: ["hurts", "affects", "compromises"], effects: ["culture loss", "tradition decay", "the erosion of indigenous cultural integrity"] },
+        { q: "Government should spend more on education.", causes: ["More school money", "Education funding", "The prioritization of public investment in academic infrastructure"], verbs: ["is good for", "helps", "is pivotal to"], effects: ["better students", "smart society", "the long-term advancement of national human capital"] },
+        { q: "Digital books will replace printed books.", causes: ["Using e-books", "Digital publishing", "The ubiquitous integration of digital literature"], verbs: ["changes", "replaces", "renders obsolete"], effects: ["books disappear", "loss of print", "the gradual phasing out of traditional print media"] },
+        { q: "Online shopping makes people lazy.", causes: ["Ordering online", "E-commerce growth", "The widespread shift toward virtual retail platforms"], verbs: ["makes", "causes", "fosters"], effects: ["less moving", "lack of activity", "a sedentary lifestyle and decreased physical exertion"] }
+        const data = [
+        { q: "Cars cause traffic.", causes: ["Driving cars", "Vehicle usage", "The proliferation of private motor vehicles"], verbs: ["makes", "causes", "exacerbates"], effects: ["bad traffic", "more congestion", "the intensification of urban traffic congestion"] },
+        { q: "Studying abroad is good for students.", causes: ["Going overseas to school", "International education", "The pursuit of tertiary education in foreign jurisdictions"], verbs: ["helps", "improves", "facilitates"], effects: ["get better jobs", "career growth", "the expansion of global career opportunities"] },
+        { q: "Fast food makes people obese.", causes: ["Eating junk food", "Processed food intake", "The habitual consumption of energy-dense processed sustenance"], verbs: ["gives", "leads to", "precipitates"], effects: ["people get fat", "weight gain", "the accelerated prevalence of metabolic disorders"] },
+        { q: "Social media makes people lonely.", causes: ["Using social media", "Online social interaction", "The pervasive utilization of digital networking platforms"], verbs: ["brings", "creates", "engenders"], effects: ["feelings of loneliness", "social isolation", "a profound exacerbation of social alienation"] },
+        { q: "Robots will take human jobs.", causes: ["Using robots", "Automation", "The widespread deployment of autonomous robotic systems"], verbs: ["destroys", "replaces", "necessitates the restructuring of"], effects: ["people lose jobs", "job loss", "the large-scale displacement of the traditional workforce"] },
+        { q: "Air pollution is bad for health.", causes: ["Dirty air", "Industrial emissions", "The unabated discharge of industrial pollutants"], verbs: ["causes", "impacts", "correlates with"], effects: ["more diseases", "health issues", "a surge in respiratory and cardiovascular pathologies"] },
+        { q: "Tourism damages local culture.", causes: ["Many tourists", "Tourism growth", "The exponential expansion of global tourism"], verbs: ["hurts", "affects", "compromises"], effects: ["culture loss", "tradition decay", "the erosion of indigenous cultural integrity"] },
+        { q: "Government should spend more on education.", causes: ["More school money", "Education funding", "The prioritization of public investment in academic infrastructure"], verbs: ["is good for", "helps", "is pivotal to"], effects: ["better students", "smart society", "the long-term advancement of national human capital"] },
+        { q: "Digital books will replace printed books.", causes: ["Using e-books", "Digital publishing", "The ubiquitous integration of digital literature"], verbs: ["changes", "replaces", "renders obsolete"], effects: ["books disappear", "loss of print", "the gradual phasing out of traditional print media"] },
+        { q: "Online shopping makes people lazy.", causes: ["Ordering online", "E-commerce growth", "The widespread shift toward virtual retail platforms"], verbs: ["makes", "causes", "fosters"], effects: ["less moving", "lack of activity", "a sedentary lifestyle and decreased physical exertion"] },
+        { q: "Cigarette smoking causes cancer.", causes: ["Smoking cigarettes", "Tobacco use", "The prolonged consumption of tobacco products"], verbs: ["gives", "leads to", "precipitates"], effects: ["getting cancer", "lung damage", "the heightened risk of malignant neoplasm development"] },
+        { q: "Water pollution kills fish.", causes: ["Dirty water", "Chemical runoff", "The unregulated discharge of hazardous industrial effluents"], verbs: ["kills", "hurts", "devastates"], effects: ["fish die", "marine loss", "the catastrophic collapse of local aquatic ecosystems"] },
+        { q: "Better roads help the economy.", causes: ["Building roads", "Infrastructure development", "The systematic enhancement of national transportation networks"], verbs: ["helps", "improves", "stimulates"], effects: ["better transport", "economic growth", "the robust acceleration of regional economic activity"] },
+        { q: "Video games make kids violent.", causes: ["Playing games", "Gaming habits", "The prolonged exposure to hyper-realistic violent digital media"], verbs: ["causes", "leads to", "induces"], effects: ["kids fight", "aggression", "the observable escalation of antisocial behavioral patterns"] },
+        { q: "Deforestation leads to climate change.", causes: ["Cutting trees", "Forest removal", "The widespread clearance of primary forest ecosystems"], verbs: ["causes", "leads to", "drives"], effects: ["hotter planet", "global warming", "the accelerated destabilization of global climatic conditions"] },
+        { q: "Public transport reduces pollution.", causes: ["Using buses/trains", "Public transit usage", "The strategic promotion of public transportation systems"], verbs: ["helps", "decreases", "substantially mitigates"], effects: ["cleaner air", "less smog", "the significant reduction of carbon-based atmospheric pollutants"] },
+        { q: "Exercise improves mental health.", causes: ["Doing sports", "Physical activity", "The consistent engagement in structured physical exercise"], verbs: ["helps", "boosts", "promotes"], effects: ["feel happy", "less stress", "the demonstrable enhancement of psychological well-being"] },
+        { q: "High housing costs make people poor.", causes: ["Expensive houses", "Rising property costs", "The persistent inflation of urban real estate valuations"], verbs: ["makes", "causes", "exacerbates"], effects: ["people struggle", "poverty", "the deepening of socio-economic inequality within urban centers"] },
+        { q: "Learning history helps students understand life.", causes: ["Studying the past", "Historical education", "The comprehensive academic study of historical precedents"], verbs: ["helps", "teaches", "cultivates"], effects: ["understand world", "better knowledge", "a nuanced comprehension of contemporary socio-political dynamics"] },
+        { q: "Cheap flight tickets increase pollution.", causes: ["Flying often", "Air travel accessibility", "The increased availability of low-cost aviation services"], verbs: ["causes", "leads to", "contributes to"], effects: ["more CO2", "damage", "a substantial augmentation of aviation-related greenhouse gas emissions"] },
+        { q: "Parents should limit screen time.", causes: ["Screen usage", "Digital consumption", "The parental regulation of adolescent digital screen exposure"], verbs: ["stops", "helps", "prevents"], effects: ["healthy kids", "better focus", "the preservation of optimal cognitive development in children"] },
+        { q: "Recycling reduces landfill waste.", causes: ["Recycling trash", "Waste management", "The implementation of comprehensive community recycling programs"], verbs: ["helps", "lowers", "facilitates"], effects: ["less trash", "cleaner land", "the significant diversion of solid waste from landfill sites"] },
+        { q: "Early retirement is good for health.", causes: ["Retiring young", "Early workforce exit", "The transition to retirement at an earlier chronological age"], verbs: ["helps", "improves", "facilitates"], effects: ["less stress", "more rest", "the substantial restoration of physical and mental vitality"] },
+        { q: "High taxes help the government.", causes: ["Paying tax", "Taxation policies", "The application of progressive fiscal taxation frameworks"], verbs: ["helps", "funds", "empowers"], effects: ["better services", "social aid", "the provision of essential public services and welfare support"] },
+        { q: "Animal testing is cruel.", causes: ["Testing on animals", "Vivisection", "The pervasive utilization of animal models for pharmacological testing"], verbs: ["is bad", "causes pain", "raises concerns regarding"], effects: ["animals suffer", "cruelty", "the profound ethical implications regarding sentient welfare"] },
+        { q: "Genetic engineering changes food.", causes: ["Modifying genes", "Biotechnology", "The application of genetic modification in agricultural production"], verbs: ["changes", "impacts", "revolutionizes"], effects: ["new food", "better crops", "the fundamental alteration of nutritional and agricultural properties"] },
+        { q: "Too much work makes people tired.", causes: ["Working hard", "Overwork", "The chronic prevalence of excessive labor hours"], verbs: ["makes", "leads to", "precipitates"], effects: ["burnout", "health decline", "a state of profound occupational and physiological exhaustion"] },
+        { q: "Space travel is a waste of money.", causes: ["Funding space", "Space exploration", "The allocation of substantial capital to extraterrestrial research"], verbs: ["wastes", "uses", "diverts"], effects: ["no money", "poverty", "the diversion of resources from urgent terrestrial challenges"] },
+        { q: "Learning art makes people creative.", causes: ["Doing art", "Creative study", "The sustained pursuit of artistic and creative disciplines"], verbs: ["builds", "develops", "fosters"], effects: ["more ideas", "creativity", "a heightened capacity for innovative and lateral thinking"] },
+        { q: "Music helps people learn.", causes: ["Listening to music", "Musical integration", "The incorporation of melodic stimuli into the learning environment"], verbs: ["helps", "aids", "optimizes"], effects: ["study better", "focus", "the refinement of cognitive retention and concentration levels"] },
+        { q: "Farmers should grow organic food.", causes: ["Farming naturally", "Organic agriculture", "The widespread transition to sustainable organic farming practices"], verbs: ["helps", "improves", "supports"], effects: ["safer food", "good health", "the mitigation of synthetic chemical exposure in human diets"] },
+        { q: "Computer skills are vital for work.", causes: ["Knowing computers", "Digital literacy", "The acquisition of advanced proficiency in digital technologies"], verbs: ["helps", "is needed", "serves as"], effects: ["get a job", "success", "a fundamental prerequisite for professional competitiveness"] },
+        { q: "Eating breakfast improves focus.", causes: ["Having breakfast", "Morning nutrition", "The routine consumption of nutrient-dense morning sustenance"], verbs: ["helps", "increases", "enhances"], effects: ["think clear", "study well", "a marked improvement in daily cognitive performance and alertness"] },
+        { q: "Volunteering helps the community.", causes: ["Helping others", "Community service", "The active participation in organized volunteer initiatives"], verbs: ["helps", "strengthens", "fortifies"], effects: ["people together", "social bond", "the cohesion and resilience of community social structures"] },
+        { q: "Science classes should be mandatory.", causes: ["Taking science", "Scientific education", "The enforcement of compulsory science-based curriculum standards"], verbs: ["helps", "builds", "cultivates"], effects: ["more knowledge", "logical mind", "a foundational scientific literacy among the citizenry"] },
+        { q: "Saving money is important.", causes: ["Putting money away", "Financial saving", "The systematic accumulation of personal financial reserves"], verbs: ["helps", "prepares", "ensures"], effects: ["security", "better future", "the establishment of long-term economic security and stability"] },
+        { q: "New technology changes our life.", causes: ["New tools", "Technological progress", "The rapid advancement of contemporary technological paradigms"], verbs: ["changes", "alters", "fundamentally transforms"], effects: ["modern life", "new habits", "the comprehensive reconfiguration of daily societal existence"] },
+        { q: "Local food is better than imported.", causes: ["Buying local", "Regional produce", "The preference for locally sourced agricultural commodities"], verbs: ["helps", "supports", "bolsters"], effects: ["help farmers", "fresh food", "the revitalization of local agrarian economies"] },
+        { q: "Learning a language opens doors.", causes: ["Study language", "Multilingualism", "The attainment of proficiency in multiple languages"], verbs: ["helps", "connects", "substantially expands"], effects: ["travel better", "meet people", "a wider array of global cultural and professional interactions"] },
+        { q: "Self-study is effective.", causes: ["Studying alone", "Independent learning", "The adoption of autonomous self-directed pedagogical approaches"], verbs: ["helps", "develops", "empowers"], effects: ["learn more", "self-growth", "the cultivation of self-discipline and cognitive independence"] }
+    ];
     ];
 
-    // Auto-generate 50 cases (using a template filler for demonstration)
-    for(let i=6; i<=50; i++) {
-        data.push({ q: `Topic Case ${i}`, causes: ["General action", "Formal phrasing", "Advanced Nominalization"], verbs: ["verb 1", "verb 2", "academic verb"], effects: ["simple result", "better result", "nominalized consequence"] });
-    }
-
     let current = 0;
+    
     function init() {
-        document.getElementById('title').innerText = `Band 9 Mastery (${current + 1}/50)`;
+        document.getElementById('title').innerText = `Band 9 Mastery (${current + 1}/${data.length})`;
         document.getElementById('prompt').innerHTML = `<strong>Prompt:</strong> ${data[current].q}`;
-        ['cause', 'verb', 'effect'].forEach(id => {
-            document.getElementById(id).innerHTML = '<option value="">-- Select --</option>' + 
-                data[current][id + 's'].map((opt, i) => `<option value="${i}">${opt}</option>`).join('');
-        });
         document.getElementById('output').style.display = 'none';
         document.getElementById('tts').style.display = 'none';
+        
+        ['cause', 'verb', 'effect'].forEach(id => {
+            let el = document.getElementById(id);
+            el.innerHTML = '<option value="">-- Select --</option>' + 
+                data[current][id + 's'].map((opt, i) => `<option value="${i}">${opt}</option>`).join('');
+        });
     }
 
     function evaluateDrill() {
         const c = document.getElementById('cause').value, v = document.getElementById('verb').value, e = document.getElementById('effect').value;
         const out = document.getElementById('output');
         if(c === "" || v === "" || e === "") {
-            out.style.display = 'block'; out.innerHTML = "<strong>Score: N/A</strong> <br> Complete all fields.";
+            out.style.display = 'block'; out.style.background = "#f8d7da";
+            out.innerHTML = "<strong>Score: N/A</strong> <br> Complete all fields.";
         } else {
             let score = (parseInt(c) + parseInt(v) + parseInt(e));
             let band = (score === 6) ? "9.0" : (score >= 4) ? "8.0" : "6.5";
-            out.style.display = 'block';
+            out.style.display = 'block'; out.style.background = "#e8f6f3";
             out.innerHTML = `<strong>Estimated Band: ${band}</strong><br><em>"${data[current].causes[c]} ${data[current].verbs[v]} ${data[current].effects[e]}."</em>`;
             document.getElementById('tts').style.display = 'block';
         }
